@@ -28,12 +28,13 @@ aonde o usuário pode cadastrar a mídia, colocar sua nota, e também comentar o
 
   Neste trabalho não serão considerados que:
   - Existem mais de um usúario
+  - 
 
 <!-- Construir alguns protótipos para a aplicação, disponibilizá-los no Github e descrever o que foi considerado. //-->
 ### 4. Protótipo
 
   Protótipos para as páginas (descrever quais páginas) foram elaborados, e podem ser encontrados em:
-  Figma: https://www.figma.com/file/fpiQkPuwruKiuz9jUy4s7y/Sistema-de-avalia%C3%A7%C3%A3o-de-m%C3%ADdias?t=cDvqBgp6WraDKzoz-1
+  - Figma: https://www.figma.com/file/fpiQkPuwruKiuz9jUy4s7y/Sistema-de-avalia%C3%A7%C3%A3o-de-m%C3%ADdias?t=cDvqBgp6WraDKzoz-1
 
 ### 5. Referências
 
