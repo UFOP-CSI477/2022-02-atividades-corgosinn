@@ -1,10 +1,10 @@
 import express from 'express'
 const app = express();
 
-import blood_types_routes from "./blood_types_routes.js"
-import collections_locations_routes from "./collections_locations_routes.js"
-import donations_routes from "./donations_routes.js"
-import person_routes from "./person_routes.js"
+import blood_types_routes from "../blood_types_routes.js"
+import collections_locations_routes from "../collections_locations_routes.js"
+import donations_routes from "../donations_routes.js"
+import person_routes from "../person_routes.js"
 
 app.get('/', ( request, response ) => {
     response.send('Página inicial da aplicação');

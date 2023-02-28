@@ -1,0 +1,117 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Pessoa {
+  id               Int      @id @default(autoincrement())
+  nome             String
+  rua              String
+  numero           String   @unique
+  complemento      String
+  documento        String
+  cidadeId         Int
+  cidade           Cidade @relation(fields: [cidadeId],references: [id])
+  tipo_sanguineo   TipoSanguineo @relation(fields: [tipo_sanguineo_id], references: [id])
+  tipo_sanguineo_id Int
+  doacao            Doacao[]
+  created_at       DateTime @default(now())
+  updated_at       DateTime @default(now())
+}
+
+model TipoSanguineo {
+  id       Int      @id @default(autoincrement())
+  tipo     String   
+  fator    String
+  doadores Pessoa[]
+  created_at       DateTime @default(now())
+  updated_at       DateTime @default(now())
+}
+
+model LocalColeta {
+  id         Int        @id @default(autoincrement())
+  nome       String
+  rua        String
+  numero     String
+  complemento     String
+  doacoes    Doacao[]
+  cidadeId   Int
+  cidade     Cidade @relation(fields: [cidadeId],references: [id])
+  created_at       DateTime @default(now())
+  updated_at       DateTime @default(now())
+}
+
+model Doacao {
+  id             Int         @id @default(autoincrement())
+  data           DateTime
+  quantidade_ml Int
+  pessoa         Pessoa      @relation(fields: [pessoaId], references: [id])
+  pessoaId       Int
+  local_coleta   LocalColeta @relation(fields: [localColetaId], references: [id])
+  localColetaId  Int
+  produtos       Produto[]
+  created_at       DateTime @default(now())
+  updated_at       DateTime @default(now())
+}
+
+model Cidade{
+  id             Int        @id @default(autoincrement())
+  nome           String
+  estadoId       Int
+  created_at     DateTime @default(now())
+  updated_at     DateTime @default(now())
+  estado         Estado @relation(fields: [estadoId], references: [id]) 
+  unidades       Unidade[]
+  locais_coleta  LocalColeta[]
+  pessoas        Pessoa[]
+}
+model Estado{
+  id             Int        @id @default(autoincrement())
+  nome           String
+  sigla          String
+  estadoId       Int
+  created_at     DateTime @default(now())
+  updated_at     DateTime @default(now())
+  cidades        Cidade[]
+}
+
+model Unidade{
+  id             Int        @id @default(autoincrement())
+  nome           String
+  numero         String
+  complemento    String
+  cidadeId       Int
+  cidade         Cidade @relation(fields: [cidadeId], references: [id])
+  distribuicoes  Distribuicao[]
+  created_at       DateTime @default(now())
+  updated_at       DateTime @default(now())
+  
+}
+model Distribuicao{
+  id             Int        @id @default(autoincrement())
+  data           DateTime
+  produtoId       Int
+  unidadeId       Int
+  produto         Produto @relation(fields: [produtoId],references: [id])
+  unidade         Unidade @relation(fields: [unidadeId],references: [id])
+  created_at       DateTime @default(now())
+  updated_at       DateTime @default(now())
+}
+model Produto{
+  id              Int        @id @default(autoincrement())
+  etiqueta        String
+  doacaoId        Int
+  validade        DateTime
+  doacao          Doacao @relation(fields: [doacaoId],references: [id])
+  distribuicoes  Distribuicao[]
+  created_at       DateTime @default(now())
+  updated_at       DateTime @default(now())
+}
