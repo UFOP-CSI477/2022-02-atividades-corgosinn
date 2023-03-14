@@ -2,6 +2,6 @@ export default [
   {
     path: '/doacoes',
     name: 'Doações',
-    // component: ()=> import("@/views/Home.vue")
+    component: ()=> import("@/views/Doacoes.vue")
   },
 ]

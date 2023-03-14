@@ -1,14 +1,24 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import DistribuicoesRoutes from './DistribuicoesRoutes'
+import DoacoesRoutes from './DoacoesRoutes'
+import PessoasRoutes from './PessoasRoutes'
+import RegiaoRoutes from './RegiaoRoutes'
+import UnidadeELocaisRoutes from './UnidadeELocaisRoutes'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'Home',
     component: ()=> import("@/views/Home.vue")
   },
+  ...DistribuicoesRoutes,
+  ...DoacoesRoutes,
+  ...PessoasRoutes,
+  ...RegiaoRoutes,
+  ...UnidadeELocaisRoutes
 
 ]
 
