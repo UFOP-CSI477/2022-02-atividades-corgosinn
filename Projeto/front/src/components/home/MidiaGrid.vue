@@ -8,7 +8,7 @@
           <v-col cols="6" md="4" v-for="item in props.items" :key="item.title">
             <v-card>
               <v-card-text>
-                <v-sheet width="100%" height="200" :class="[[`${colors[parseInt(Math.random() * 4)] } `]]"></v-sheet>
+                <v-sheet width="100%" height="200" ></v-sheet>
                 <span class="d-flex justify-center mt-2">{{ item.title }}</span>
               </v-card-text>
             </v-card>
@@ -38,7 +38,6 @@
           { title:"Teste" },
           { title:"Teste" },
         ],
-        colors:["red darken-3","blue darken-3","grey darken-3","yellow darken-3"]
       }
     }
   }

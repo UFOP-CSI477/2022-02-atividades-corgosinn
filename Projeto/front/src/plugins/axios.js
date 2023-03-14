@@ -1,61 +1,70 @@
-"use strict";
-
-import Vue from 'vue';
+import Vue from "vue";
 import axios from "axios";
+import VueAxios from "vue-axios";
 
-// Full config:  https://github.com/axios/axios#request-config
-// axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
-// axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+Vue.use(VueAxios, axios);
+Vue.axios.defaults.baseURL = process.env.VUE_APP_API_BASE || "/";
 
-let config = {
-  // baseURL: process.env.baseURL || process.env.apiUrl || ""
-  // timeout: 60 * 1000, // Timeout
-  // withCredentials: true, // Check cross-site Access-Control
-};
+const API_URL = "http://localhost:3000/api/v1";
 
-const _axios = axios.create(config);
+const axiosInstance = axios.create({
+  baseURL: API_URL,
+  // withCredentials: true,
+  headers: {
+    "Content-Type": "application/json"
+  }
+});
 
-_axios.interceptors.request.use(
-  function(config) {
-    // Do something before request is sent
+axiosInstance.interceptors.request.use(
+  config => {
+    config.method.toUpperCase();
+    config.headers = {
+      ...config.headers,
+      "Content-Type": "application/json",
+      "token-type": localStorage.auth_token_default
+        ? localStorage.auth_token_default.split(";")[0]
+        : null,
+      "access-token": localStorage.auth_token_default
+        ? localStorage.auth_token_default.split(";")[1]
+        : null,
+      client: localStorage.auth_token_default
+        ? localStorage.auth_token_default.split(";")[2]
+        : null,
+      uid: localStorage.auth_token_default
+        ? localStorage.auth_token_default.split(";")[3]
+        : null,
+      expiry: localStorage.auth_token_default
+        ? localStorage.auth_token_default.split(";")[4]
+        : null
+    };
+    // console.log("Request:", config);
     return config;
   },
-  function(error) {
-    // Do something with request error
+  error => {
+    // alert("Ops! Algo errado com a requisição.");
+    // console.log(error);
     return Promise.reject(error);
   }
 );
 
-// Add a response interceptor
-_axios.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   function(response) {
-    // Do something with response data
+    if (response.headers["access-token"]) {
+      const token = [
+        response.headers["token-type"],
+        response.headers["access-token"],
+        response.headers.client,
+        response.headers.uid,
+        response.headers.expiry
+      ].join(";");
+      localStorage.auth_token_default = token;
+    }
     return response;
   },
   function(error) {
-    // Do something with response error
     return Promise.reject(error);
   }
 );
 
-Plugin.install = function(Vue, options) {
-  Vue.axios = _axios;
-  window.axios = _axios;
-  Object.defineProperties(Vue.prototype, {
-    axios: {
-      get() {
-        return _axios;
-      }
-    },
-    $axios: {
-      get() {
-        return _axios;
-      }
-    },
-  });
-};
-
-Vue.use(Plugin)
-
-export default Plugin;
+export default { axiosInstance };
+/* eslint-enable */

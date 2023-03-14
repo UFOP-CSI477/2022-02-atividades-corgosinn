@@ -9,19 +9,19 @@
           <v-img src="https://upload.wikimedia.org/wikipedia/pt/thumb/9/9b/Avengers_Endgame.jpg/250px-Avengers_Endgame.jpg"></v-img>
         </v-sheet>
         <div class="border mt-2 pa-2 rounded-b-xl">
-          <span class="d-flex justify-center white--text title">{{midia.title}}</span>
+          <span class="d-flex justify-center white--text title">{{midia.title ? midia.title : "Titulo da mídia"}}</span>
           <v-divider class="my-2"></v-divider>
           <div>
             <v-row class="mx-10 ">
-              <v-col cols="7" class="white--text"> Produtor: {{midia.creator}}</v-col>
+              <v-col cols="7" class="white--text"> Produtor: {{midia.creator ? midia.creator : "Criador da mídia"}}</v-col>
               <v-col cols="5" class="d-flex justify-end align-center white--text"> 
-                <v-icon class="yellow--text mr-2">mdi-star</v-icon> {{midia.rate}} / 10
+                <v-icon class="yellow--text mr-2">mdi-star</v-icon> {{midia.rate ? midia.rate : '9'}} / 10
               </v-col>
             </v-row>
             <div class="d-flex justify-center flex-column mt-2">
               <span class="white--text ma-auto">Comentário do usuário</span>
               <div class="d-flex flex-wrap white pa-3 rounded-b-xl">
-                {{midia.comment}}
+                {{midia.comment ? midia.comment : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga neque aperiam sapiente atque repudiandae. Explicabo, excepturi facilis repellendus commodi voluptatem aperiam dicta officiis maxime, optio itaque similique sed sequi libero!" }}
               </div>
             </div>
           </div>

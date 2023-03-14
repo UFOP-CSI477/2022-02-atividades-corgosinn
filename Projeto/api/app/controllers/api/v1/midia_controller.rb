@@ -1,4 +1,4 @@
-class MidiaController < ApplicationController
+class Api::V1::MidiaController < ApplicationController
   before_action :set_midium, only: [:show, :update, :destroy]
 
   # GET /midia
