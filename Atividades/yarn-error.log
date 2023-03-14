@@ -1,0 +1,36 @@
+Arguments: 
+  /home/thiagoacto/.nvm/versions/node/v16.9.1/bin/node /usr/local/bin/yarn add vue-cli-plugin-vue-axios -D --tilde
+
+PATH: 
+  /home/thiagoacto/repositories/2022-02-atividades-corgosinn/Atividades/node_modules/.bin:/home/thiagoacto/repositories/2022-02-atividades-corgosinn/node_modules/.bin:/home/thiagoacto/repositories/node_modules/.bin:/home/thiagoacto/node_modules/.bin:/home/node_modules/.bin:/node_modules/.bin:/home/thiagoacto/.nvm/versions/node/v16.9.1/bin:/home/thiagoacto/.rbenv/shims:/home/thiagoacto/.rbenv/bin:/home/thiagoacto/.rbenv/shims:/home/thiagoacto/.rbenv/bin:/home/thiagoacto/.vscode-server/bin/5235c6bb189b60b01b1f49062f4ffa42384f8c91/bin/remote-cli:/home/thiagoacto/.nvm/versions/node/v16.9.1/bin:/home/thiagoacto/.rbenv/shims:/home/thiagoacto/.rbenv/bin:/home/thiagoacto/.rbenv/shims:/home/thiagoacto/.rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/Common Files/Intel/Shared Libraries/redist/intel64/compiler:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/d/Proggraming_languages/Python/Scripts/:/mnt/d/Proggraming_languages/Python/:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/Git/cmd:/mnt/d/Proggraming_languages/mingw32/bin:/mnt/d/Proggraming_languages/mingw32:/mnt/d/Proggraming_languages/mingw32/i686-w64-mingw32/bin:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/nodejs/:/mnt/c/Users/thiag/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/thiag/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/d/Proggraming_languages/mingw32/bin:/mnt/c/Users/thiag/AppData/Roaming/npm:/snap/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.9.1
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/vue-cli-plugin-vue-axios: Not found
+      at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66145:18)
+      at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140890:22)
+      at Request.emit (node:events:394:28)
+      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141862:10)
+      at Request.emit (node:events:394:28)
+      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141784:12)
+      at Object.onceWrapper (node:events:513:28)
+      at IncomingMessage.emit (node:events:406:35)
+      at endReadableNT (node:internal/streams/readable:1343:12)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
