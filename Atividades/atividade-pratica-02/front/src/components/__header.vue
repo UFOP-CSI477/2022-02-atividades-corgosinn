@@ -22,7 +22,7 @@
         { text:"Doações", page:"Doações" },
         { text:"Região", page:"Regiões" },
         { text:"Unidades e Locais", page:"Unidades e Locais" },
-        { text:"Distribuições", page:"Distribuições" },
+        { text:"Produtos", page:"DistribuiçõesEProdutos" },
       ]
     }
   }

@@ -1,12 +1,15 @@
 <template>
   <v-container fluid>
-    <router-view></router-view>
+    <PessoasScreen></PessoasScreen>
   </v-container>
 </template>
 
 <script>
  export default {
   name:"Pessoas",
+  components:{
+    PessoasScreen: () => import("@/components/pessoas/PessoasScreen.vue")
+  },
   data(){
     return{
       

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import DistribuicoesRoutes from './DistribuicoesRoutes'
+import DistribuicoesEProdutosRoutes from './DistribuicoesEProdutosRoutes'
 import DoacoesRoutes from './DoacoesRoutes'
 import PessoasRoutes from './PessoasRoutes'
 import RegiaoRoutes from './RegiaoRoutes'
@@ -14,7 +14,7 @@ const routes = [
     name: 'Home',
     component: ()=> import("@/views/Home.vue")
   },
-  ...DistribuicoesRoutes,
+  ...DistribuicoesEProdutosRoutes,
   ...DoacoesRoutes,
   ...PessoasRoutes,
   ...RegiaoRoutes,
