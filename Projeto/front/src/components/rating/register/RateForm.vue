@@ -8,10 +8,10 @@
         <v-text-field v-model="midia.title"  filled  label="Nome da mídia"></v-text-field>
       </v-col>
       <v-col cols="7">
-        <v-select v-model="midia.rate" filled label="Nota da mídia"></v-select>
+        <v-select :items="notas" v-model="midia.rate" filled label="Nota da mídia"></v-select>
       </v-col>
       <v-col cols="5">
-        <v-select v-model="midia.type" filled label="Tipo da mídia"></v-select>
+        <v-select :items="tipos" v-model="midia.type" filled label="Tipo da mídia"></v-select>
       </v-col>
       <v-col cols="6">
         <v-text-field v-model="midia.creator" filled label="Produtor/Autor"></v-text-field>
@@ -36,6 +36,12 @@
     name:"RateForm",
     props:{
       midia:{type:Object, default:()=>{return {}}}
+    },
+    data(){
+      return{
+        notas:[0,1,2,3,4,5,6,7,8,9,10],
+        tipos:["Filme","Livro","Série"]
+      }
     },
     methods:{
       resetMidia(){

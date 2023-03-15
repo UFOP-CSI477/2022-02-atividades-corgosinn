@@ -7,9 +7,7 @@ export default {
   },
 
   create(midia){
-    return Http.post(`/midia`, {midia: {
-      ...midia
-    }})
+    return Http.post(`/midia`, { ...midia })
   },
 
   update(midia){

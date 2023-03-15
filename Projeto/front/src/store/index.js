@@ -11,6 +11,13 @@ export default new Vuex.Store({
   getters: {
     users_length(state){
       return state.users.length
+    },
+    active_user(state){
+      for(let user in state.users){
+        if(state.users[user].id == state.active_user){
+          return state.users[user]
+        }
+      }
     }
   },
   mutations: {

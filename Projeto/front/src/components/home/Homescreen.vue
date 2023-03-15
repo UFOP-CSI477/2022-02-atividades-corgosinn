@@ -1,5 +1,6 @@
 <template>
   <div>
+    <router-view v-on="$listeners"></router-view>
     <v-row>
       <v-col cols="12" md="6" class="d-flex justify-center">
         <MidiaCard></MidiaCard>

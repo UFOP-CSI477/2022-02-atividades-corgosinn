@@ -13,6 +13,7 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   export default{
     name:"RateFormScreen",
     components:{
@@ -25,9 +26,20 @@
       }
     },
     methods:{
+      getData(){
+        this.midia.user_id = this.active_user_id
+      },
       handleResetMidia(){
         this.midia = {}
       }
+    },
+    computed:{
+      ...mapState({
+        active_user_id: state => state.active_user
+      }),
+    },
+    mounted(){
+      this.getData()
     }
   }
 </script>

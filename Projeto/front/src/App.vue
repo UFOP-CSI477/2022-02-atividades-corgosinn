@@ -1,9 +1,8 @@
 <template>
   <v-app>
     <Header></Header>
-    <DialogRegisterUser v-if="noUsers" @onCreate="handleCreateUser"></DialogRegisterUser>
     <v-main>
-      <router-view/>
+      <router-view @onCreate="handleCreateUser"/>
     </v-main>
   </v-app>
 </template>
@@ -24,7 +23,6 @@ export default {
   }),
   methods:{
     getData(){
-
       this.getUsers()
     },
     getUsers(){
@@ -37,6 +35,9 @@ export default {
         this.setUsers([...r.data])
       }).finally(()=>{
         this.loading_users = false
+        if(this.noUsers){
+          this.$router.push({name:"CreateUser"})
+        }
       })
       
     },

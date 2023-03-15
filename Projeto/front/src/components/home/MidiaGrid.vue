@@ -20,24 +20,42 @@
 </template>
 
 <script>
+  import Api from "@/api/index"
+  import { mapState } from "vuex"
   export default{
     name:"MidiaGrid",
     data(){
       return{
         search:"",
-        midias: [
-          { title:"Teste" },
-          { title:"Banaca" },
-          { title:"Bacon" },
-          { title:"Sorvete" },
-          { title:"Igloo" },
-          { title:"Palito" },
-          { title:"Uva" },
-          { title:"Weverton" },
-          { title:"Teste" },
-          { title:"Teste" },
-          { title:"Teste" },
-        ],
+        midias: [],
+        loading_midias:false
+      }
+    },
+    methods:{
+      getData(){
+        this.getMidias()
+      },
+      getMidias(){
+        this.loading_midias = true
+        let filter = {user_id: this.active_user_id }
+        Api.Midia.index( filter ).then(r => {
+          this.midias = [...r.data]
+        }).finally(()=>{
+          this.loading_midias = false
+        })
+      }
+    },
+    computed:{
+      ...mapState({
+        active_user_id: state => state.active_user
+      })
+    },
+    mounted(){
+      this.getData()
+    },
+    watch:{
+      active_user_id(nv){
+        this.getData()
       }
     }
   }

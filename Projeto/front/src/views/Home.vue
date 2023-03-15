@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <Homescreen></Homescreen>
+    <Homescreen v-on="$listeners"></Homescreen>
   </v-container>
 </template>
 

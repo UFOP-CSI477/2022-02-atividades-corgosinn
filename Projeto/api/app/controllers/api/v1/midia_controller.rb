@@ -3,8 +3,11 @@ class Api::V1::MidiaController < ApplicationController
 
   # GET /midia
   def index
-    @midia = Midium.all
-
+    if index_params[:user_id]
+      @midia = Midium.where(user_id: index_params[:user_id])
+    else
+      @midia = Midium.all
+    end
     render json: @midia
   end
 
@@ -18,7 +21,7 @@ class Api::V1::MidiaController < ApplicationController
     @midium = Midium.new(midium_params)
 
     if @midium.save
-      render json: @midium, status: :created, location: @midium
+      render json: @midium, status: :created
     else
       render json: @midium.errors, status: :unprocessable_entity
     end
@@ -40,6 +43,10 @@ class Api::V1::MidiaController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def index_params
+      params.permit(:user_id)
+    end
+
     def set_midium
       @midium = Midium.find(params[:id])
     end
