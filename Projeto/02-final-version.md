@@ -1,6 +1,6 @@
 # **CSI606-2021-02 - Remoto - Trabalho Final - Resultados**
 
-## *Aluna(o): Princesa Leia (Luke Skywalker)*
+## *Aluna(o): Thiago Corgosinho Silva 20.2.8117*
 
 --------------
 
@@ -31,9 +31,9 @@ O maior desafio foi com toda certeza o tempo, com mais tempo tenho certeza que e
 <!-- Descrever o que deve ser feito para instalar (ou baixar) a aplicação, o que precisa ser configurando (parâmetros, banco de dados e afins) e como executá-la. -->
 Para rodar o programa o usuário deve possuir na maquina:
 
-1- Rails com o ruby:  '2.7.0' -> https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-20-04
-2- Npm e yarn -> https://edca.com.br/blog/instalando-o-nodejs-e-o-yarn-em-4-passos
-3- Pgadmin -> https://cursos.alura.com.br/forum/topico-dica-de-como-instalar-pgadmin4-no-ubuntu-167465
+- 1- Rails com o ruby:  '2.7.0' -> https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-20-04
+- 2- Npm e yarn -> https://edca.com.br/blog/instalando-o-nodejs-e-o-yarn-em-4-passos
+- 3- Pgadmin -> https://cursos.alura.com.br/forum/topico-dica-de-como-instalar-pgadmin4-no-ubuntu-167465
 
 Agora, com os requisitos acimas, podemos rodar os scripts para execução do programa:
 
