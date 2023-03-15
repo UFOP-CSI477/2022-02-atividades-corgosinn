@@ -5,19 +5,19 @@
         <span class="title">Adicionar Mídia</span>
       </v-col>
       <v-col cols="12">
-        <v-text-field v-model="midia.title"  filled  label="Nome da mídia"></v-text-field>
+        <v-text-field :rules="[campo_em_branco]" v-model="midia.title"  filled  label="Nome da mídia"></v-text-field>
       </v-col>
       <v-col cols="7">
-        <v-select :items="notas" v-model="midia.rate" filled label="Nota da mídia"></v-select>
+        <v-select :rules="[campo_em_branco]" :items="notas" v-model="midia.rate" filled label="Nota da mídia"></v-select>
       </v-col>
       <v-col cols="5">
-        <v-select :items="tipos" v-model="midia.type" filled label="Tipo da mídia"></v-select>
+        <v-select :rules="[campo_em_branco]" :items="tipos" v-model="midia.type" filled label="Tipo da mídia"></v-select>
       </v-col>
       <v-col cols="6">
-        <v-text-field v-model="midia.creator" filled label="Produtor/Autor"></v-text-field>
+        <v-text-field :rules="[campo_em_branco]" v-model="midia.creator" filled label="Produtor/Autor"></v-text-field>
       </v-col>
       <v-col cols="6">
-        <v-text-field v-model="midia.image_url" filled label="Link da imagem"></v-text-field>
+        <v-text-field :rules="[campo_em_branco]" v-model="midia.image_url" filled label="Link da imagem"></v-text-field>
       </v-col>
       <v-col cols="12">
         <v-textarea v-model="midia.comment" filled label="Comentários"></v-textarea>
@@ -40,7 +40,8 @@
     data(){
       return{
         notas:[0,1,2,3,4,5,6,7,8,9,10],
-        tipos:["Filme","Livro","Série"]
+        tipos:["Filme","Livro","Série"],
+        campo_em_branco: v => !!v || "Campo obrigatório"
       }
     },
     methods:{
@@ -50,7 +51,7 @@
       saveMidia(){
         if(this.$refs.form.validate()){
           Api.Midia.create( this.midia ).then(r => {
-            console.log(r)
+            this.$router.push({name:"Home"})
           })
         }
       }

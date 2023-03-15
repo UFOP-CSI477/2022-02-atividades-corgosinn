@@ -1,12 +1,11 @@
 <template>
   <div>
-    {{ midia }}
     <v-row>
       <v-col cols="12" md="6">
         <RateForm :midia="midia" @resetMidia="handleResetMidia" class="pa-10"></RateForm>
       </v-col>
       <v-col cols="12" md="6" class="d-flex justify-center">
-        <MidiaCard :midia="midia"></MidiaCard>
+        <MidiaCard text_card="Preview" :midia="midia"></MidiaCard>
       </v-col>
     </v-row>
   </div>
@@ -30,7 +29,7 @@
         this.midia.user_id = this.active_user_id
       },
       handleResetMidia(){
-        this.midia = {}
+        this.midia = {user_id:this.active_user_id }
       }
     },
     computed:{
