@@ -19,7 +19,7 @@
       links:[
         { text:"Home", page:"Home" },
         { text:"Pessoas", page:"Pessoas" },
-        { text:"Doações", page:"Doações" },
+        { text:"Doações e Tipos Sanguinios", page:"DoacoesETiposSanguinios" },
         { text:"Região", page:"Regiões" },
         { text:"Unidades e Locais", page:"Unidades e Locais" },
         { text:"Produtos", page:"DistribuiçõesEProdutos" },

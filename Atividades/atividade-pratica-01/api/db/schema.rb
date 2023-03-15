@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_14_155826) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_15_210300) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,12 +33,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_155826) do
   end
 
   create_table "doacaos", force: :cascade do |t|
-    t.bigint "local_coleta_id", null: false
     t.datetime "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "pessoa_id", null: false
-    t.index ["local_coleta_id"], name: "index_doacaos_on_local_coleta_id"
+    t.bigint "local_coletum_id", null: false
+    t.index ["local_coletum_id"], name: "index_doacaos_on_local_coletum_id"
     t.index ["pessoa_id"], name: "index_doacaos_on_pessoa_id"
   end
 
@@ -103,7 +103,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_155826) do
   add_foreign_key "cidades", "estados"
   add_foreign_key "distribuicaos", "produtos"
   add_foreign_key "distribuicaos", "unidades"
-  add_foreign_key "doacaos", "local_coleta", column: "local_coleta_id"
+  add_foreign_key "doacaos", "local_coleta"
   add_foreign_key "doacaos", "pessoas"
   add_foreign_key "local_coleta", "cidades"
   add_foreign_key "pessoas", "cidades"

@@ -3,7 +3,7 @@ class Api::V1::UnidadesController < ApplicationController
 
   # GET /unidades
   def index
-    @unidades = Unidade.all
+    @unidades = Unidade.left_outer_joins(:cidade).select("unidades.*, cidades.nome as nome_cidade")
 
     render json: @unidades
   end
@@ -18,7 +18,7 @@ class Api::V1::UnidadesController < ApplicationController
     @unidade = Unidade.new(unidade_params)
 
     if @unidade.save
-      render json: @unidade, status: :created, location: @unidade
+      render json: @unidade, status: :created
     else
       render json: @unidade.errors, status: :unprocessable_entity
     end

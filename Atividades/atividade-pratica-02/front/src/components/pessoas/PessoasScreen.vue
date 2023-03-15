@@ -12,13 +12,14 @@
       </v-card-title>
       <v-divider></v-divider>
       <v-card-text>
-        <v-data-table :headers="headers"></v-data-table>
+        <v-data-table :items="pessoas" :headers="headers"></v-data-table>
       </v-card-text>
     </v-card>
   </div>
 </template>
 
 <script>
+  import Api from '@/api/index'
   export default{
     name:"PessoasScreen",
     data(){
@@ -30,8 +31,22 @@
           {text:"Documento", value:"documento" },
           {text:"Cidade", value:"cidade" },
           {text:"Tipo Sanguinio", value:"tipo_sanguinio" },
-        ]
+        ],
+        pessoas:[]
       }
+    },
+    methods:{
+      getData(){
+        this.getPessoas()
+      },
+      getPessoas(){
+        Api.PessoaApi.index().then(r => {
+          this.pessoas = [...r.data]
+        })
+      }
+    },
+    mounted(){
+      this.getData()
     }
   }
 </script>

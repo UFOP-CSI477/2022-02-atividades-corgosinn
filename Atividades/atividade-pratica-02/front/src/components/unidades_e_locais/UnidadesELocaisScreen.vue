@@ -14,7 +14,7 @@
           </v-card-title>
           <v-divider></v-divider>
           <v-card-text>
-            <v-data-table :headers="locais_headers"></v-data-table>
+            <v-data-table :items="locais" :headers="locais_headers"></v-data-table>
           </v-card-text>
          </v-card>
        </v-col>
@@ -30,7 +30,7 @@
           </v-card-title>
           <v-divider></v-divider>
           <v-card-text>
-            <v-data-table :headers="unidades_headers"></v-data-table>
+            <v-data-table :items="unidades"  :headers="unidades_headers"></v-data-table>
           </v-card-text>
          </v-card>
        </v-col>
@@ -40,6 +40,7 @@
 </template>
 
 <script>
+  import Api from '@/api/index'
   export default{
     name:"UnidadesELocaisScreen",
     data(){
@@ -48,13 +49,40 @@
           {text:"id", value:"id" },
           {text:"Nome", value:"nome" },
           {text:"Endereço", value:"endereco" },
-          {text:"Cidade", value:"cidade" },
+          {text:"Cidade", value:"nome_cidade" },
         ],
         unidades_headers:[
           {text:"id", value:"id" },
+          {text:"Nome", value:"nome" },
           {text:"Endereço", value:"endereco" },
-          {text:"Cidade", value:"cidade" },
+          {text:"Cidade", value:"nome_cidade" },
         ],
+        locais:[],
+        unidades:[],
+      }
+    },
+    methods:{
+      getData(){
+        this.getLocais()
+        this.getUnidades()
+      },
+      getLocais(){
+        Api.LocalColetaApi.index().then(r => {
+          this.locais = [...r.data]
+        })
+      },
+      getUnidades(){
+        Api.UnidadeApi.index().then(r => {
+          this.unidades = [...r.data]
+        })
+      }
+    },
+    mounted(){
+      this.getData()
+    },
+    watch:{
+      $route(){
+        this.getData()
       }
     }
   }

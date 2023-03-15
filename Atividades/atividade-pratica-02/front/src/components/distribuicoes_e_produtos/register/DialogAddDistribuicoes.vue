@@ -6,16 +6,18 @@
           Adicionar Distribuição
         </v-card-title>
         <v-card-text>
-          <v-form>
-            <v-select label="Produto"></v-select>
-            <v-select label="Unidade"></v-select>
-            <v-text-field v-model="distribuicao.data" label="Data"></v-text-field>
+          <v-form ref="form">
+            <v-select v-model="distribuicao.produto_id" :items="produtos" item-text="etiqueta" item-value="id" label="Produto"></v-select>
+            <v-select v-model="distribuicao.unidade_id" :items="unidades" item-text="nome" item-value="id" label="Unidade"></v-select>
+            <div class="d-flex justify-center">
+              <v-date-picker v-model="distribuicao.data"></v-date-picker>
+            </div>
           </v-form>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn @click="$router.push({name:'DistribuiçõesEProdutos'})" color="error" text>Cancelar</v-btn>
-          <v-btn @click="" color="success">Adicionar</v-btn>
+          <v-btn @click="postDistribuicao" color="success">Adicionar</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -29,17 +31,36 @@
     data(){
       return{
         dialog:true,
-        distribuicao: {}
+        distribuicao: {},
+        produtos: [],
+        unidades: []
       }
     },
     methods:{
+      getData(){
+        this.getProdutos()
+        this.getUnidades()
+      },
+      getProdutos(){
+        Api.ProdutoApi.index().then(r => {
+          this.produtos = [...r.data]
+        })
+      },
+      getUnidades(){
+        Api.UnidadeApi.index().then(r => {
+          this.unidades = [...r.data]
+        })
+      },
       postDistribuicao(){
         if(this.$refs.form.validate()){
           Api.DistribuicaoApi.create(this.distribuicao).then(r => {
-
+            this.$router.push({name:'DistribuiçõesEProdutos'})
           })
         }
       }
+    },
+    mounted(){
+      this.getData()
     }
 
   }

@@ -3,7 +3,7 @@ class Api::V1::CidadesController < ApplicationController
 
   # GET /cidades
   def index
-    @cidades = Cidade.all
+    @cidades = Cidade.left_outer_joins(:estado).select("cidades.*, estados.nome as nome_estado")
 
     render json: @cidades
   end
@@ -18,7 +18,7 @@ class Api::V1::CidadesController < ApplicationController
     @cidade = Cidade.new(cidade_params)
 
     if @cidade.save
-      render json: @cidade, status: :created, location: @cidade
+      render json: @cidade, status: :created
     else
       render json: @cidade.errors, status: :unprocessable_entity
     end

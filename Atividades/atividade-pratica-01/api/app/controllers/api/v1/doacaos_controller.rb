@@ -3,7 +3,7 @@ class Api::V1::DoacaosController < ApplicationController
 
   # GET /doacaos
   def index
-    @doacaos = Doacao.all
+    @doacaos = Doacao.left_outer_joins(:pessoa,:local_coletum).select("doacaos.*, pessoas.nome as nome_pessoa, local_coleta.nome as nome_local")
 
     render json: @doacaos
   end
@@ -18,7 +18,7 @@ class Api::V1::DoacaosController < ApplicationController
     @doacao = Doacao.new(doacao_params)
 
     if @doacao.save
-      render json: @doacao, status: :created, location: @doacao
+      render json: @doacao, status: :created
     else
       render json: @doacao.errors, status: :unprocessable_entity
     end
@@ -46,6 +46,6 @@ class Api::V1::DoacaosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def doacao_params
-      params.require(:doacao).permit(:local_coleta_id, :data)
+      params.require(:doacao).permit(:local_coletum_id, :data, :pessoa_id)
     end
 end

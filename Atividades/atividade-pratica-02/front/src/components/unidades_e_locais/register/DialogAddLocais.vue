@@ -6,18 +6,18 @@
           Adicionar Local
         </v-card-title>
         <v-card-text>
-          <v-form>
+          <v-form ref="form">
             <v-text-field v-model="local.nome" label="Nome"></v-text-field>
             <v-text-field v-model="local.rua" label="Rua"></v-text-field>
             <v-text-field v-model="local.numero" label="Número"></v-text-field>
             <v-text-field v-model="local.complemento" label="Complemento"></v-text-field>
-            <v-select label="Cidade"></v-select>
+            <v-select v-model="local.cidade_id" :items="cidades" item-text="nome" item-value="id" label="Cidade"></v-select>
           </v-form>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn @click="$router.push({name:'Unidades e Locais'})" color="error" text>Cancelar</v-btn>
-          <v-btn @click="" color="success">Adicionar</v-btn>
+          <v-btn @click="postLocalColeta" color="success">Adicionar</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -31,17 +31,29 @@
     data(){
       return{
         dialog:true,
-        local: {}
+        local: {},
+        cidades:[],
       }
     },
     methods:{
+      getData(){
+        this.getCidades()
+      },
+      getCidades(){
+        Api.CidadeApi.index().then(r => {
+          this.cidades = [...r.data]
+        })
+      },
       postLocalColeta(){
         if(this.$refs.form.validate()){
           Api.LocalColetaApi.create(this.local).then(r => {
-
+            this.$router.push({name:'Unidades e Locais'})
           })
         }
       }
+    },
+    mounted(){
+      this.getData()
     }
 
   }

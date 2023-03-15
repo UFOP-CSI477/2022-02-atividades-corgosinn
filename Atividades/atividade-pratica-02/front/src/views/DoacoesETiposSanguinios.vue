@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container>
     <DoacoesScreen></DoacoesScreen>
   </v-container>
 </template>
@@ -8,7 +8,7 @@
  export default {
   name:"Doacoes",
   components:{
-    DoacoesScreen: () => import("@/components/doacoes/DoacoesScreen.vue")
+    DoacoesScreen: () => import("@/components/doacoes_e_tipos_sanguinios/DoacoesETiposSanguiniosScreen.vue")
   },
   data(){
     return{

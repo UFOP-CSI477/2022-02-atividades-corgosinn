@@ -7,15 +7,14 @@
         </v-card-title>
         <v-card-text>
           <v-form ref="form">
-            <v-select label="Pessoa"></v-select>
-            <v-select label="Local"></v-select>
-            <v-text-field label="Data"></v-text-field>
+            <v-text-field v-model="tipo_sanguinio.tipo" label="Tipo"></v-text-field>
+            <v-text-field v-model="tipo_sanguinio.fator"  label="Fator"></v-text-field>
           </v-form>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn @click="$router.push({name:'Doações'})" color="error" text>Cancelar</v-btn>
-          <v-btn @click="" color="success">Adicionar</v-btn>
+          <v-btn @click="$router.push({name:'DoacoesETiposSanguinios'})" color="error" text>Cancelar</v-btn>
+          <v-btn @click="postTipoSanguinio" color="success">Adicionar</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -25,18 +24,18 @@
 <script>
   import Api from "@/api/index"
   export default{
-    name:"DialogAddDoacoes",
+    name:"DialogAddTiposSanguinios",
     data(){
       return{
         dialog:true,
-        doacao: {}
+        tipo_sanguinio: {}
       }
     },
     methods:{
-      postDoacao(){
+      postTipoSanguinio(){
         if(this.$refs.form.validate()){
-          Api.DoacaoApi.create(this.doacao).then(r => {
-
+          Api.TipoSanguinioApi.create(this.tipo_sanguinio).then(r => {
+            this.$router.push({name:'DoacoesETiposSanguinios'})
           })
         }
       }

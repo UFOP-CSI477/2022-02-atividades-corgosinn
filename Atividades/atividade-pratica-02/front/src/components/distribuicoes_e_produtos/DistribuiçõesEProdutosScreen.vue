@@ -14,7 +14,7 @@
           </v-card-title>
           <v-divider></v-divider>
           <v-card-text>
-            <v-data-table :headers="distribuicoes_headers"></v-data-table>
+            <v-data-table :items="distribuicoes" :headers="distribuicoes_headers"></v-data-table>
           </v-card-text>
          </v-card>
        </v-col>
@@ -30,7 +30,7 @@
           </v-card-title>
           <v-divider></v-divider>
           <v-card-text>
-            <v-data-table :headers="produtos_headers"></v-data-table>
+            <v-data-table :items="produtos" :headers="produtos_headers"></v-data-table>
           </v-card-text>
          </v-card>
        </v-col>
@@ -40,10 +40,13 @@
 </template>
 
 <script>
+  import Api from '@/api/index'
   export default{
     name:"DistribuiçõesEProdutosScreen",
     data(){
       return{
+        produtos:[],
+        distribuicoes:[],
         distribuicoes_headers:[
           {text:"id", value:"id" },
           {text:"Produto", value:"produto" },
@@ -56,6 +59,32 @@
           {text:"Doação", value:"doacao" },
           {text:"Validade", value:"validade" },
         ],
+      }
+    },
+    methods:{
+      getData(){
+        this.getProdutos()
+        this.getDistribuicoes()
+
+      },
+      getProdutos(){
+        Api.ProdutoApi.index().then(r => {
+          this.produtos = [...r.data]
+        })
+      },
+      getDistribuicoes(){
+        Api.DistribuicaoApi.index().then(r => {
+          this.distribuicoes = [...r.data]
+        })
+      }
+
+    },
+    mounted(){
+      this.getData()
+    },
+    watch:{
+      $route(){
+        this.getData()
       }
     }
   }

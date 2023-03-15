@@ -6,9 +6,9 @@ export default {
     return Http.get(`/estados`, {params: {...filter}})
   },
   create(estado){
-    return Http.post(`/estados`, {estado: {
+    return Http.post(`/estados`, {
       ...estado
-    }})
+    })
   },
   update(estado){
     return Http.put(`/estados/${estado.id}`, {

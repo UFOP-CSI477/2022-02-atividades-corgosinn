@@ -18,7 +18,7 @@ class Api::V1::ProdutosController < ApplicationController
     @produto = Produto.new(produto_params)
 
     if @produto.save
-      render json: @produto, status: :created, location: @produto
+      render json: @produto, status: :created
     else
       render json: @produto.errors, status: :unprocessable_entity
     end

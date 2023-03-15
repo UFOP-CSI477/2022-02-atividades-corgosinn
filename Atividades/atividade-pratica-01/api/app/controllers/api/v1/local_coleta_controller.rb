@@ -3,7 +3,7 @@ class Api::V1::LocalColetaController < ApplicationController
 
   # GET /local_coleta
   def index
-    @local_coleta = LocalColetum.all
+    @local_coleta = LocalColetum.left_outer_joins(:cidade).select("local_coleta.*, cidades.nome as nome_cidade")
 
     render json: @local_coleta
   end
@@ -18,7 +18,7 @@ class Api::V1::LocalColetaController < ApplicationController
     @local_coletum = LocalColetum.new(local_coletum_params)
 
     if @local_coletum.save
-      render json: @local_coletum, status: :created, location: @local_coletum
+      render json: @local_coletum, status: :created
     else
       render json: @local_coletum.errors, status: :unprocessable_entity
     end

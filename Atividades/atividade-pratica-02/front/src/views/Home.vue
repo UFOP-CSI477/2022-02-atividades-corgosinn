@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container>
     opa
   </v-container>
 </template>

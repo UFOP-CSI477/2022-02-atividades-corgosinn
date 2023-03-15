@@ -14,7 +14,7 @@
           </v-card-title>
           <v-divider></v-divider>
           <v-card-text>
-            <v-data-table :headers="estado_headers"></v-data-table>
+            <v-data-table :headers="estado_headers" :items="estados"></v-data-table>
           </v-card-text>
          </v-card>
        </v-col>
@@ -30,7 +30,7 @@
           </v-card-title>
           <v-divider></v-divider>
           <v-card-text>
-            <v-data-table :headers="cidade_headers"></v-data-table>
+            <v-data-table :items="cidades" :headers="cidade_headers"></v-data-table>
           </v-card-text>
          </v-card>
        </v-col>
@@ -40,6 +40,7 @@
 </template>
 
 <script>
+  import Api from '@/api/index'
   export default{
     name:"RegioesScreen",
     data(){
@@ -52,8 +53,35 @@
         cidade_headers:[
           {text:"id", value:"id" },
           {text:"Nome", value:"nome" },
-          {text:"Estado", value:"estado" },
+          {text:"Estado", value:"nome_estado" },
         ],
+        estados:[ ],
+        cidades:[ ],
+      }
+    },
+    methods:{
+      getData(){
+        this.getEstados()
+        this.getCidades()
+      },
+      getEstados(){
+        Api.EstadoApi.index().then(r =>{
+          this.estados = [...r.data]
+        })
+      },
+      getCidades(){
+        Api.CidadeApi.index().then(r =>{
+          this.cidades = [...r.data]
+        })
+      }
+      
+    },
+    mounted(){
+      this.getData()
+    },
+    watch:{
+      $route(){
+        this.getData()
       }
     }
   }

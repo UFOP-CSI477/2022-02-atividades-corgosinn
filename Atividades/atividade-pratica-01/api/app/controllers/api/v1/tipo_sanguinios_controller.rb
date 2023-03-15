@@ -18,7 +18,7 @@ class Api::V1::TipoSanguiniosController < ApplicationController
     @tipo_sanguinio = TipoSanguinio.new(tipo_sanguinio_params)
 
     if @tipo_sanguinio.save
-      render json: @tipo_sanguinio, status: :created, location: @tipo_sanguinio
+      render json: @tipo_sanguinio, status: :created
     else
       render json: @tipo_sanguinio.errors, status: :unprocessable_entity
     end

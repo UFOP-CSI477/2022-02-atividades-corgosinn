@@ -18,7 +18,7 @@ class Api::V1::DistribuicaosController < ApplicationController
     @distribuicao = Distribuicao.new(distribuicao_params)
 
     if @distribuicao.save
-      render json: @distribuicao, status: :created, location: @distribuicao
+      render json: @distribuicao, status: :created
     else
       render json: @distribuicao.errors, status: :unprocessable_entity
     end

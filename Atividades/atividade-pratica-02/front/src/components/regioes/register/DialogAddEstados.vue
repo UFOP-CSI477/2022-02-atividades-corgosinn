@@ -6,7 +6,7 @@
           Adicionar Estado
         </v-card-title>
         <v-card-text>
-          <v-form>
+          <v-form ref="form">
             <v-text-field v-model="estado.nome" label="Nome"></v-text-field>
             <v-text-field v-model="estado.sigla" label="Sigla"></v-text-field>
           </v-form>
@@ -14,7 +14,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn @click="$router.push({name:'Regiões'})" color="error" text>Cancelar</v-btn>
-          <v-btn @click="" color="success">Adicionar</v-btn>
+          <v-btn @click="postEstado" color="success">Adicionar</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -35,7 +35,7 @@
       postEstado(){
         if(this.$refs.form.validate()){
           Api.EstadoApi.create(this.estado).then(r => {
-
+            this.$router.push({name:'Regiões'})
           })
         }
       }
