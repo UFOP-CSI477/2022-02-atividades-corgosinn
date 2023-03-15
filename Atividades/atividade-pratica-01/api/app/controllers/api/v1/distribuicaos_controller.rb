@@ -3,7 +3,7 @@ class Api::V1::DistribuicaosController < ApplicationController
 
   # GET /distribuicaos
   def index
-    @distribuicaos = Distribuicao.all
+    @distribuicaos = Distribuicao.left_outer_joins(:produto,:unidade).select("distribuicaos.*, produtos.etiqueta as etiqueta, unidades.nome as nome_unidade")
 
     render json: @distribuicaos
   end

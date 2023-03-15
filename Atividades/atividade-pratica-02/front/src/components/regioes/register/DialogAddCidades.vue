@@ -35,6 +35,11 @@
     methods:{
       getData(){
         this.getEstados()
+        if(this.isEditPage){
+          Api.CidadeApi.show(this.$route.params.id).then(r => {
+            this.cidade = {...r.data}
+          })
+        }
       },
       getEstados(){
         Api.EstadoApi.index().then(r => {
@@ -43,10 +48,16 @@
       },
       postCidade(){
         if(this.$refs.form.validate()){
-          Api.CidadeApi.create(this.cidade).then(r => {
+          let method = this.isEditPage ? "update" : "create"
+          Api.CidadeApi[method](this.cidade).then(r => {
             this.$router.push({name:'Regiões'})
           })
         }
+      }
+    },
+    computed:{
+      isEditPage(){
+        return this.$route.params.id ? true:false
       }
     },
     mounted(){

@@ -40,6 +40,11 @@
       getData(){
         this.getLocais()
         this.getPessoas()
+        if(this.isEditPage){
+          Api.DoacaoApi.show(this.$route.params.id).then(r => {
+            this.doacao = {...r.data}
+          })
+        }
       },
       getPessoas(){
         Api.PessoaApi.index().then(r => {
@@ -53,10 +58,16 @@
       },
       postDoacao(){
         if(this.$refs.form.validate()){
-          Api.DoacaoApi.create(this.doacao).then(r => {
+          let method = this.isEditPage ? "update" : "create"
+          Api.DoacaoApi[method](this.doacao).then(r => {
             this.$router.push({name:'DoacoesETiposSanguinios'})
           })
         }
+      }
+    },
+    computed:{
+      isEditPage(){
+        return this.$route.params.id ? true:false
       }
     },
     mounted(){

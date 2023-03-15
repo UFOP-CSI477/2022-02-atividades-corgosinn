@@ -32,13 +32,29 @@
       }
     },
     methods:{
+      getData(){
+        if(this.isEditPage){
+          Api.TipoSanguinioApi.show(this.$route.params.id).then(r => {
+            this.tipo_sanguinio = {...r.data}
+          })
+        }
+      },  
       postTipoSanguinio(){
         if(this.$refs.form.validate()){
-          Api.TipoSanguinioApi.create(this.tipo_sanguinio).then(r => {
+          let method = this.isEditPage ? "update" : "create"
+          Api.TipoSanguinioApi[method](this.tipo_sanguinio).then(r => {
             this.$router.push({name:'DoacoesETiposSanguinios'})
           })
         }
       }
+    },
+    computed:{
+      isEditPage(){
+        return this.$route.params.id ? true:false
+      }
+    },
+    mounted(){
+      this.getData()
     }
   }
 </script>

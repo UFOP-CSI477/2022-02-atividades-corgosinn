@@ -38,6 +38,11 @@
     methods:{
       getData(){
         this.getCidades()
+        if(this.isEditPage){
+          Api.LocalColetaApi.show(this.$route.params.id).then(r => {
+            this.local = {...r.data}
+          })
+        }
       },
       getCidades(){
         Api.CidadeApi.index().then(r => {
@@ -46,10 +51,16 @@
       },
       postLocalColeta(){
         if(this.$refs.form.validate()){
-          Api.LocalColetaApi.create(this.local).then(r => {
+          let method = this.isEditPage ? "update" : "create"
+          Api.LocalColetaApi[method](this.local).then(r => {
             this.$router.push({name:'Unidades e Locais'})
           })
         }
+      }
+    },
+    computed:{
+      isEditPage(){
+        return this.$route.params.id ? true:false
       }
     },
     mounted(){

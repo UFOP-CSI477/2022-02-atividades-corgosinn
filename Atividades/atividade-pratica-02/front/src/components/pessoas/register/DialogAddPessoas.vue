@@ -46,6 +46,11 @@
       getData(){
         this.getCidades()
         this.getTiposSanguinios()
+        if(this.isEditPage){
+          Api.PessoaApi.show(this.$route.params.id).then(r => {
+            this.pessoa = {...r.data}
+          })
+        }
       },
       getCidades(){
         Api.CidadeApi.index().then(r =>{
@@ -59,10 +64,16 @@
       },
       postPessoa(){
         if(this.$refs.form.validate()){
-          Api.PessoaApi.create(this.pessoa).then(r => {
+          let method = this.isEditPage ? "update" : "create"
+          Api.PessoaApi[method](this.pessoa).then(r => {
             this.$router.push({name:'Pessoas'})
           })
         }
+      }
+    },
+    computed:{
+      isEditPage(){
+        return this.$route.params.id ? true:false
       }
     },
     mounted(){

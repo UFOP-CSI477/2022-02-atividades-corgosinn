@@ -45,6 +45,11 @@
     methods:{
       getData(){
         this.getDoacoes()
+        if(this.isEditPage){
+          Api.ProdutoApi.show(this.$route.params.id).then(r => {
+            this.produto = {...r.data}
+          })
+        }
       },
       getDoacoes(){
         Api.DoacaoApi.index().then(r => {
@@ -53,10 +58,16 @@
       },
       postProduto(){
         if(this.$refs.form.validate()){
-          Api.ProdutoApi.create(this.produto).then(r => {
+          let method = this.isEditPage ? "update" : "create"
+          Api.ProdutoApi[method](this.produto).then(r => {
             this.$router.push({name:'DistribuiçõesEProdutos'})
           })
         }
+      }
+    },
+    computed:{
+      isEditPage(){
+        return this.$route.params.id ? true:false
       }
     },
     mounted(){

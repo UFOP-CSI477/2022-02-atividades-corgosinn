@@ -14,6 +14,16 @@ export default [
         name: 'AddDistribuicoes',
         component: ()=> import("@/components/distribuicoes_e_produtos/register/DialogAddDistribuicoes.vue")
       },
+      {
+        path: 'produtos/:id',
+        name: 'EditProdutos',
+        component: ()=> import("@/components/distribuicoes_e_produtos/register/DialogAddProdutos.vue")
+      },
+      {
+        path: 'distribuicoes/:id',
+        name: 'EditDistribuicoes',
+        component: ()=> import("@/components/distribuicoes_e_produtos/register/DialogAddDistribuicoes.vue")
+      },
     ]
   },
 ]

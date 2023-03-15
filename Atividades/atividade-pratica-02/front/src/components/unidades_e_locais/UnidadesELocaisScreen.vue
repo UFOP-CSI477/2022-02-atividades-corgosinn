@@ -14,7 +14,19 @@
           </v-card-title>
           <v-divider></v-divider>
           <v-card-text>
-            <v-data-table :items="locais" :headers="locais_headers"></v-data-table>
+            <v-data-table :items="locais" :headers="locais_headers">
+              <template v-slot:item.endereco="{item}">
+                {{item.rua}} - {{ item.complemento }} ,{{ item.numero }}
+              </template>
+              <template v-slot:item.actions="{item}">
+                <v-btn icon @click="$router.push({name:'EditLocais', params:{id:item.id}})">
+                  <v-icon>mdi-pencil</v-icon>
+                </v-btn>
+                <v-btn icon @click="">
+                  <v-icon>mdi-delete</v-icon>
+                </v-btn>
+              </template>
+            </v-data-table>
           </v-card-text>
          </v-card>
        </v-col>
@@ -30,7 +42,19 @@
           </v-card-title>
           <v-divider></v-divider>
           <v-card-text>
-            <v-data-table :items="unidades"  :headers="unidades_headers"></v-data-table>
+            <v-data-table :items="unidades"  :headers="unidades_headers">
+              <template v-slot:item.endereco="{item}">
+                {{ item.complemento }} ,{{ item.numero }}
+               </template>
+               <template v-slot:item.actions="{item}">
+                  <v-btn icon @click="$router.push({name:'EditUnidades', params:{id:item.id}})">
+                    <v-icon>mdi-pencil</v-icon>
+                  </v-btn>
+                  <v-btn icon @click="">
+                    <v-icon>mdi-delete</v-icon>
+                  </v-btn>
+                </template>
+            </v-data-table>
           </v-card-text>
          </v-card>
        </v-col>
@@ -50,12 +74,14 @@
           {text:"Nome", value:"nome" },
           {text:"Endereço", value:"endereco" },
           {text:"Cidade", value:"nome_cidade" },
+          {text:"Ações", value:"actions" },
         ],
         unidades_headers:[
           {text:"id", value:"id" },
           {text:"Nome", value:"nome" },
           {text:"Endereço", value:"endereco" },
           {text:"Cidade", value:"nome_cidade" },
+          {text:"Ações", value:"actions" },
         ],
         locais:[],
         unidades:[],

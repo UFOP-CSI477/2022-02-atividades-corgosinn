@@ -12,7 +12,22 @@
       </v-card-title>
       <v-divider></v-divider>
       <v-card-text>
-        <v-data-table :items="pessoas" :headers="headers"></v-data-table>
+        <v-data-table :items="pessoas" :headers="headers">
+          <template v-slot:item.endereco="{item}">
+            {{item.rua}} - {{ item.complemento }} ,{{ item.numero }}
+          </template>
+          <template v-slot:item.tipo_sanguinio="{item}">
+            {{item.tipo}} {{ item.fator }}
+          </template>
+          <template v-slot:item.actions="{item}">
+            <v-btn icon @click="$router.push({name:'EditPessoas', params:{id:item.id}})">
+              <v-icon>mdi-pencil</v-icon>
+            </v-btn>
+            <v-btn icon @click="">
+              <v-icon>mdi-delete</v-icon>
+            </v-btn>
+          </template>
+        </v-data-table>
       </v-card-text>
     </v-card>
   </div>
@@ -29,8 +44,9 @@
           {text:"Nome", value:"nome" },
           {text:"Endereço", value:"endereco" },
           {text:"Documento", value:"documento" },
-          {text:"Cidade", value:"cidade" },
+          {text:"Cidade", value:"nome_cidade" },
           {text:"Tipo Sanguinio", value:"tipo_sanguinio" },
+          {text:"Ações", value:"actions" },
         ],
         pessoas:[]
       }

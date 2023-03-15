@@ -38,6 +38,11 @@
     methods:{
       getData(){
         this.getCidades()
+        if(this.isEditPage){
+          Api.UnidadeApi.show(this.$route.params.id).then(r => {
+            this.unidade = {...r.data}
+          })
+        }
       },
       getCidades(){
         Api.CidadeApi.index().then(r => {
@@ -46,10 +51,16 @@
       },
       postUnidade(){
         if(this.$refs.form.validate()){
-          Api.UnidadeApi.create(this.unidade).then(r => {
+          let method = this.isEditPage ? "update" : "create"
+          Api.UnidadeApi[method](this.unidade).then(r => {
             this.$router.push({name:'Unidades e Locais'})
           })
         }
+      }
+    },
+    computed:{
+      isEditPage(){
+        return this.$route.params.id ? true:false
       }
     },
     mounted(){

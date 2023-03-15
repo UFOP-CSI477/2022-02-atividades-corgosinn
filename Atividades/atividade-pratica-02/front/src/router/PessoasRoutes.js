@@ -9,6 +9,11 @@ export default [
         name: 'AddPessoas',
         component: ()=> import("@/components/pessoas/register/DialogAddPessoas.vue")
       },
+      {
+        path: ':id',
+        name: 'EditPessoas',
+        component: ()=> import("@/components/pessoas/register/DialogAddPessoas.vue")
+      },
     ]
   },
 ]

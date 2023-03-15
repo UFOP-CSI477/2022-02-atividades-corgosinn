@@ -14,7 +14,19 @@
           </v-card-title>
           <v-divider></v-divider>
           <v-card-text>
-            <v-data-table :items="doacoes" :headers="headers"></v-data-table>
+            <v-data-table :items="doacoes" :headers="headers">
+              <template v-slot:item.data="{item}">
+                {{ new Date(item.data).getDate() }}/{{ new Date(item.data).getMonth() }}/{{ new Date(item.data).getFullYear() }}
+              </template>
+              <template v-slot:item.actions="{item}">
+                <v-btn icon @click="$router.push({name:'EditDoacoes', params:{id:item.id}})">
+                  <v-icon>mdi-pencil</v-icon>
+                </v-btn>
+                <v-btn icon @click="">
+                  <v-icon>mdi-delete</v-icon>
+                </v-btn>
+              </template>
+            </v-data-table>
           </v-card-text>
         </v-card>
       </v-col>
@@ -30,7 +42,16 @@
           </v-card-title>
           <v-divider></v-divider>
           <v-card-text>
-            <v-data-table :items="tipos_sanguinios" :headers="tipo_sanguinio_headers"></v-data-table>
+            <v-data-table :items="tipos_sanguinios" :headers="tipo_sanguinio_headers">
+              <template v-slot:item.actions="{item}">
+                <v-btn icon @click="$router.push({name:'EditTipoSanguinio', params:{id:item.id}})">
+                  <v-icon>mdi-pencil</v-icon>
+                </v-btn>
+                <v-btn icon @click="">
+                  <v-icon>mdi-delete</v-icon>
+                </v-btn>
+              </template>
+            </v-data-table>
           </v-card-text>
         </v-card>
       </v-col>
@@ -47,14 +68,16 @@
       return{
         headers:[
           {text:"id", value:"id" },
-          {text:"Pessoa", value:"pessoa" },
-          {text:"Local", value:"local" },
+          {text:"Pessoa", value:"nome_pessoa" },
+          {text:"Local", value:"nome_local" },
           {text:"Data", value:"data" },
+          {text:"Ações", value:"actions" },
         ],
         tipo_sanguinio_headers:[
           {text:"id", value:"id" },
           {text:"Tipo", value:"tipo" },
           {text:"fator", value:"fator" },
+          {text:"Ações", value:"actions" },
         ],
         doacoes:[],
         tipos_sanguinios:[]

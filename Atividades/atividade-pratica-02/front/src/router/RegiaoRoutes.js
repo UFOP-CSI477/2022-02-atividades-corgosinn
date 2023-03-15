@@ -14,6 +14,16 @@ export default [
         name: 'AddCidades',
         component: ()=> import("@/components/regioes/register/DialogAddCidades.vue")
       },
+      {
+        path: 'estados/:id',
+        name: 'EditEstados',
+        component: ()=> import("@/components/regioes/register/DialogAddEstados.vue")
+      },
+      {
+        path: 'cidades/:id',
+        name: 'EditCidades',
+        component: ()=> import("@/components/regioes/register/DialogAddCidades.vue")
+      },
     ]
   },
 ]

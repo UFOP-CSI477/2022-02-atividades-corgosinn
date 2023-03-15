@@ -14,7 +14,16 @@
           </v-card-title>
           <v-divider></v-divider>
           <v-card-text>
-            <v-data-table :headers="estado_headers" :items="estados"></v-data-table>
+            <v-data-table :headers="estado_headers" :items="estados">
+              <template v-slot:item.actions="{item}">
+                <v-btn icon @click="$router.push({name:'EditEstados', params:{id:item.id}})">
+                  <v-icon>mdi-pencil</v-icon>
+                </v-btn>
+                <v-btn icon @click="">
+                  <v-icon>mdi-delete</v-icon>
+                </v-btn>
+              </template>
+            </v-data-table>
           </v-card-text>
          </v-card>
        </v-col>
@@ -30,7 +39,16 @@
           </v-card-title>
           <v-divider></v-divider>
           <v-card-text>
-            <v-data-table :items="cidades" :headers="cidade_headers"></v-data-table>
+            <v-data-table :items="cidades" :headers="cidade_headers">
+              <template v-slot:item.actions="{item}">
+                <v-btn icon @click="$router.push({name:'EditCidades', params:{id:item.id}})">
+                  <v-icon>mdi-pencil</v-icon>
+                </v-btn>
+                <v-btn icon @click="">
+                  <v-icon>mdi-delete</v-icon>
+                </v-btn>
+              </template>
+            </v-data-table>
           </v-card-text>
          </v-card>
        </v-col>
@@ -49,11 +67,13 @@
           {text:"id", value:"id" },
           {text:"Nome", value:"nome" },
           {text:"sigla", value:"sigla" },
+          {text:"Ações", value:"actions" },
         ],
         cidade_headers:[
           {text:"id", value:"id" },
           {text:"Nome", value:"nome" },
           {text:"Estado", value:"nome_estado" },
+          {text:"Ações", value:"actions" },
         ],
         estados:[ ],
         cidades:[ ],

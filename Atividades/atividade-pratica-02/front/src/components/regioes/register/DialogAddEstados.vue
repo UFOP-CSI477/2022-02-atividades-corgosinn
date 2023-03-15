@@ -32,13 +32,29 @@
       }
     },
     methods:{
+      getData(){
+        if(this.isEditPage){
+          Api.EstadoApi.show(this.$route.params.id).then(r => {
+            this.estado = {...r.data}
+          })
+        }
+      },
       postEstado(){
         if(this.$refs.form.validate()){
-          Api.EstadoApi.create(this.estado).then(r => {
+          let method = this.isEditPage ? "update" : "create"
+          Api.EstadoApi[method](this.estado).then(r => {
             this.$router.push({name:'Regiões'})
           })
         }
       }
+    },
+    computed:{
+      isEditPage(){
+        return this.$route.params.id ? true:false
+      }
+    },
+    mounted(){
+      this.getData()
     }
 
   }

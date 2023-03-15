@@ -14,7 +14,19 @@
           </v-card-title>
           <v-divider></v-divider>
           <v-card-text>
-            <v-data-table :items="distribuicoes" :headers="distribuicoes_headers"></v-data-table>
+            <v-data-table :items="distribuicoes" :headers="distribuicoes_headers">
+              <template v-slot:item.data="{item}">
+                {{ new Date(item.data).getDate() }}/{{ new Date(item.data).getMonth() }}/{{ new Date(item.data).getFullYear() }}
+              </template>
+              <template v-slot:item.actions="{item}">
+                <v-btn icon @click="$router.push({name:'EditDistribuicoes', params:{id:item.id}})">
+                  <v-icon>mdi-pencil</v-icon>
+                </v-btn>
+                <v-btn icon @click="">
+                  <v-icon>mdi-delete</v-icon>
+                </v-btn>
+              </template>
+            </v-data-table>
           </v-card-text>
          </v-card>
        </v-col>
@@ -30,7 +42,19 @@
           </v-card-title>
           <v-divider></v-divider>
           <v-card-text>
-            <v-data-table :items="produtos" :headers="produtos_headers"></v-data-table>
+            <v-data-table :items="produtos" :headers="produtos_headers">
+              <template v-slot:item.validade="{item}">
+                {{ new Date(item.validade).getDate() }}/{{ new Date(item.validade).getMonth() }}/{{ new Date(item.validade).getFullYear() }}
+              </template>
+              <template v-slot:item.actions="{item}">
+                <v-btn icon @click="$router.push({name:'EditProdutos', params:{id:item.id}})">
+                  <v-icon>mdi-pencil</v-icon>
+                </v-btn>
+                <v-btn icon @click="">
+                  <v-icon>mdi-delete</v-icon>
+                </v-btn>
+              </template>
+            </v-data-table>
           </v-card-text>
          </v-card>
        </v-col>
@@ -49,15 +73,17 @@
         distribuicoes:[],
         distribuicoes_headers:[
           {text:"id", value:"id" },
-          {text:"Produto", value:"produto" },
-          {text:"Unidade", value:"unidade" },
+          {text:"Produto", value:"etiqueta" },
+          {text:"Unidade", value:"nome_unidade" },
           {text:"Data", value:"data" },
+          {text:"Ações", value:"actions" },
         ],
         produtos_headers:[
           {text:"id", value:"id" },
           {text:"Etiqueta", value:"etiqueta" },
-          {text:"Doação", value:"doacao" },
+          {text:"Doação ID", value:"doacao_id" },
           {text:"Validade", value:"validade" },
+          {text:"Ações", value:"actions" },
         ],
       }
     },

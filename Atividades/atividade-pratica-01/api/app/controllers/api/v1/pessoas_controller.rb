@@ -3,7 +3,7 @@ class Api::V1::PessoasController < ApplicationController
 
   # GET /pessoas
   def index
-    @pessoas = Pessoa.all
+    @pessoas = Pessoa.left_outer_joins(:cidade,:tipo_sanguinio).select("pessoas.*, cidades.nome as nome_cidade, tipo_sanguinios.*")
 
     render json: @pessoas
   end

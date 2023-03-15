@@ -40,6 +40,11 @@
       getData(){
         this.getProdutos()
         this.getUnidades()
+        if(this.isEditPage){
+          Api.DistribuicaoApi.show(this.$route.params.id).then(r => {
+            this.distribuicao = {...r.data}
+          })
+        }
       },
       getProdutos(){
         Api.ProdutoApi.index().then(r => {
@@ -53,10 +58,16 @@
       },
       postDistribuicao(){
         if(this.$refs.form.validate()){
-          Api.DistribuicaoApi.create(this.distribuicao).then(r => {
+          let method = this.isEditPage ? "update" : "create"
+          Api.DistribuicaoApi[method](this.distribuicao).then(r => {
             this.$router.push({name:'DistribuiçõesEProdutos'})
           })
         }
+      }
+    },
+    computed:{
+      isEditPage(){
+        return this.$route.params.id ? true:false
       }
     },
     mounted(){

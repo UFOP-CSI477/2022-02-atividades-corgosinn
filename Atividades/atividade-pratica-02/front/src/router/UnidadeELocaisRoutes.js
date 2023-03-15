@@ -14,6 +14,16 @@ export default [
         name: 'AddUnidades',
         component: ()=> import("@/components/unidades_e_locais/register/DialogAddUnidades.vue")
       },
+      {
+        path: 'locais/:id',
+        name: 'EditLocais',
+        component: ()=> import("@/components/unidades_e_locais/register/DialogAddLocais.vue")
+      },
+      {
+        path: 'unidades/:id',
+        name: 'EditUnidades',
+        component: ()=> import("@/components/unidades_e_locais/register/DialogAddUnidades.vue")
+      },
     ]
   },
 ]
