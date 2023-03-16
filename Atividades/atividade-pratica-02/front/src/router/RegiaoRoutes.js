@@ -15,6 +15,16 @@ export default [
         component: ()=> import("@/components/regioes/register/DialogAddCidades.vue")
       },
       {
+        path: 'estados/delete/:id',
+        name: 'DeleteEstados',
+        component: ()=> import("@/components/shared/DialogDeleteItem.vue")
+      },
+      {
+        path: 'cidades/delete/:id',
+        name: 'DeleteCidades',
+        component: ()=> import("@/components/shared/DialogDeleteItem.vue")
+      },
+      {
         path: 'estados/:id',
         name: 'EditEstados',
         component: ()=> import("@/components/regioes/register/DialogAddEstados.vue")

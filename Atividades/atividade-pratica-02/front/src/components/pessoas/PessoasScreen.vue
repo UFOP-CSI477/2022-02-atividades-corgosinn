@@ -23,7 +23,7 @@
             <v-btn icon @click="$router.push({name:'EditPessoas', params:{id:item.id}})">
               <v-icon>mdi-pencil</v-icon>
             </v-btn>
-            <v-btn icon @click="">
+            <v-btn icon @click="$router.push({name:'DeletePessoas', params:{id:item.id, table:'PessoaApi'}})">
               <v-icon>mdi-delete</v-icon>
             </v-btn>
           </template>
@@ -63,6 +63,11 @@
     },
     mounted(){
       this.getData()
+    },
+    watch:{
+      $route(){
+        this.getData()
+      }
     }
   }
 </script>

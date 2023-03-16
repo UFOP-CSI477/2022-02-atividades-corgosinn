@@ -15,6 +15,16 @@ export default [
         component: ()=> import("@/components/unidades_e_locais/register/DialogAddUnidades.vue")
       },
       {
+        path: 'locais/delete/:id',
+        name: 'DeleteLocais',
+        component: ()=> import("@/components/shared/DialogDeleteItem.vue")
+      },
+      {
+        path: 'unidades/delete/:id',
+        name: 'DeleteUnidades',
+        component: ()=> import("@/components/shared/DialogDeleteItem.vue")
+      },
+      {
         path: 'locais/:id',
         name: 'EditLocais',
         component: ()=> import("@/components/unidades_e_locais/register/DialogAddLocais.vue")

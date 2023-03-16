@@ -22,7 +22,7 @@
                 <v-btn icon @click="$router.push({name:'EditDoacoes', params:{id:item.id}})">
                   <v-icon>mdi-pencil</v-icon>
                 </v-btn>
-                <v-btn icon @click="">
+                <v-btn icon @click="$router.push({name:'DeleteDoacoes', params:{id:item.id, table:'DoacaoApi'}})">
                   <v-icon>mdi-delete</v-icon>
                 </v-btn>
               </template>
@@ -47,7 +47,7 @@
                 <v-btn icon @click="$router.push({name:'EditTipoSanguinio', params:{id:item.id}})">
                   <v-icon>mdi-pencil</v-icon>
                 </v-btn>
-                <v-btn icon @click="">
+                <v-btn icon @click="$router.push({name:'DeleteTipoSanguinio', params:{id:item.id, table:'TipoSanguinioApi'}})">
                   <v-icon>mdi-delete</v-icon>
                 </v-btn>
               </template>

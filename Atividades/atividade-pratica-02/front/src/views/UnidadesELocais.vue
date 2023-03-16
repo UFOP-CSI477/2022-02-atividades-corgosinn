@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <UnidadesELocaisScreen></UnidadesELocaisScreen>
   </v-container>
 </template>

@@ -19,7 +19,7 @@
                 <v-btn icon @click="$router.push({name:'EditEstados', params:{id:item.id}})">
                   <v-icon>mdi-pencil</v-icon>
                 </v-btn>
-                <v-btn icon @click="">
+                <v-btn icon @click="$router.push({name:'DeleteEstados', params:{id:item.id, table:'EstadoApi'}})">
                   <v-icon>mdi-delete</v-icon>
                 </v-btn>
               </template>
@@ -44,7 +44,7 @@
                 <v-btn icon @click="$router.push({name:'EditCidades', params:{id:item.id}})">
                   <v-icon>mdi-pencil</v-icon>
                 </v-btn>
-                <v-btn icon @click="">
+                <v-btn icon @click="$router.push({name:'DeleteCidades', params:{id:item.id, table:'CidadeApi'}})">
                   <v-icon>mdi-delete</v-icon>
                 </v-btn>
               </template>

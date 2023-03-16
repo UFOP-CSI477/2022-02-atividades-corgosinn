@@ -10,6 +10,11 @@ export default [
         component: ()=> import("@/components/pessoas/register/DialogAddPessoas.vue")
       },
       {
+        path: 'delete/:id',
+        name: 'DeletePessoas',
+        component: ()=> import("@/components/shared/DialogDeleteItem.vue")
+      },
+      {
         path: ':id',
         name: 'EditPessoas',
         component: ()=> import("@/components/pessoas/register/DialogAddPessoas.vue")
